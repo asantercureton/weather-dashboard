@@ -1,16 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-      <!-- Bootstrap Link -->
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-      <!-- CSS Link -->
-      <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Bootstrap Link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- FontAwesome Link -->
+    <script src="https://kit.fontawesome.com/70fcd40144.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    
+    <header>
+        <div>
+            <h1>Weather Dashboard<i class="fas fa-cloud"></i></h1>
+        </div>
+    </header>
+
+    <!-- Container -->
+    <div class="container-fluid">
+        <!-- Row -->
+        <div class="row">
+            <!-- Column -->
+            <div class="col-12">
+                <!-- Content -->
+                <div class="card-body">
+                    <h2>Search for a City:</h2>
+                    <!-- Form for search -->
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="search-input" placeholder="Input city here">
+                        </div>
+                        <button type="submit" id="search-btn" class="btn btn-primary"><i
+                                class="fas fa-search"></i>Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Row -->
+        <div class="row">
+            <!-- Column -->
+            <div class="col-12">
+                <div class="card">
+                    <!-- Content -->
+                    <div class="card-body">
+                        <h3 id="current-city">City Search Info</h3>
+                        <!-- Indexes -->
+                        <p id="current-temp">temp</p>
+                        <p id="current-wind">wind</p>
+                        <p id="current-humidity">humidity</p>
+                        <p id="current-uv">uv</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Row -->
+        <div class="row">
+            <!-- Column -->
+            <div id="weather-forecast" class="col-12">
+                <h3 id="forecast">5-Day Forecast:</h3>
+                <div class="card">
+                    <!-- forecast 1 -->
+                    <div class="card-body">
+                        <div id="daily">
+                            <!-- Cards -->
+                            <p id="week-date">Today's Date</p>
+                            <p id="week-temp">temp</p>
+                            <p id="week-wind">wind</p>
+                            <p id="week-humidity">humidity</p>
+                        </div>
+                    </div>
+                    <!-- forecast 2 -->
+                    <div class="card-body">
+                        <div id="daily">
+                            <!-- Cards -->
+                            <p id="week-date">Today's Date</p>
+                            <p id="week-temp">temp</p>
+                            <p id="week-wind">wind</p>
+                            <p id="week-humidity">humidity</p>
+                        </div>
+                    </div>
+                    <!-- forecast 3 -->
+                    <div class="card-body">
+                        <div id="daily">
+                            <!-- Cards -->
+                            <p id="week-date">Today's Date</p>
+                            <p id="week-temp">temp</p>
+                            <p id="week-wind">wind</p>
+                            <p id="week-humidity">humidity</p>
+                        </div>
+                    </div>
+                    <!-- forecast 4 -->
+                    <div class="card-body">
+                        <div id="daily">
+                            <!-- Cards -->
+                            <p id="week-date">Today's Date</p>
+                            <p id="week-temp">temp</p>
+                            <p id="week-wind">wind</p>
+                            <p id="week-humidity">humidity</p>
+                        </div>
+                    </div>
+                    <!-- forecast 5 -->
+                    <div class="card-body">
+                        <div id="daily">
+                            <!-- Cards -->
+                            <p id="week-date">Today's Date</p>
+                            <p id="week-temp">temp</p>
+                            <p id="week-wind">wind</p>
+                            <p id="week-humidity">humidity</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
+
 </html>
