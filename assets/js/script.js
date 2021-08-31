@@ -23,17 +23,16 @@ resultCard.classList.add('card');
 var resultBody = document.createElement('div');
 resultBody.classList.add('card-body');
 
-var titleEl = document.createElement('h2');
-
-var bodyContentEl = document.createElement('p');
 
 //     var queryString = document.location.search;
 // FUNCTIONS
-// search through an index of cities for current weather info
+// Get search info of Charlotte for current weather info
 function getSearch(event) {
     event.preventDefault();
-    var city = "charlotte";
-    var urlQuery = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
+    var cityLon = "35.22709";
+    var cityLat = "-80.84313";
+    var part = "minutely,hourly,alerts";
+    var urlQuery = "https://api.openweathermap.org/data/2.5/onecall?lat=" + cityLon + "&lon=" + cityLat + "&exclude=" + part + "&appid=" + apiKey;
     fetch(urlQuery)
         .then(function (response) {
             return response.json();
@@ -41,9 +40,14 @@ function getSearch(event) {
         .then(function (data) {
             console.log(data);
         });
+        currentCity.textContent = 'Charlotte, NC';
+        currentTemp.textContent = "Hello";
+        currentWind.textContent = "Hello";
+        currentHumidity.textContent = "Hello";
+        currentUV.textContent = "Hello";
 };
 
-
+// Display the City info
 
 
 
