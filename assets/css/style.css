@@ -1,3 +1,13 @@
 #box {
     background-color: rgb(219, 234, 245);
 }
+
+.custom-class {
+    min-width: 100px;
+}
+
+@media (min-width: 576px) {
+    .custom-class {
+        display: block;
+      }
+};

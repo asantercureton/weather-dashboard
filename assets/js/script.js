@@ -17,6 +17,7 @@ var weekTempMin = document.getElementById('week-tempMin');
 var weekHumidity = document.getElementById('week-humidity');
 var weekWind = document.getElementById('week-wind');
 var pastCitySearches = [];
+var stored = [];
 
 
 // FUNCTIONS
@@ -55,28 +56,44 @@ function getSearch(event) {
                     currentTemp.textContent = "Temp: " + (((parseInt(locData.main.temp) - 273.15) * 1.80) + 32).toFixed(2) + " °F";
                     currentWind.textContent = "Wind: " + data.current.wind_speed + " MPH";
                     currentHumidity.textContent = "Humidity: " + data.current.humidity + " %";
-                    currentUV.textContent = "UV Index: " + data.current.uvi;
-                    currentUV.style.cssText = 'color:white;background-color:green';
+                    
+
+                    // CHANGE STATE OF UV INDEX COLOR
+                    if (data.current.uvi <= 2) {
+                        currentUV.style.cssText = 'color:white;background-color:green';
+                        currentUV.textContent = "UV Index: " + data.current.uvi + " LOW";
+                    } else if (3 <= data.current.uvi <= 5) {
+                        currentUV.style.cssText = 'color:orange;background-color:yellow';
+                        currentUV.textContent = "UV Index: " + data.current.uvi + " MODERATE";
+                    } else if (6 <= data.current.uvi <= 7) {
+                        currentUV.style.cssText = 'color:yellow;background-color:orange';
+                        currentUV.textContent = "UV Index: " + data.current.uvi + " HIGH";
+                    } else if (8 <= data.current.uvi <= 10) {
+                        currentUV.style.cssText = 'color:yellow;background-color:red';
+                        currentUV.textContent = "UV Index: " + data.current.uvi + " VERY HIGH";
+                    } else {
+                        currentUV.style.cssText = 'color:yellow;background-color:purple';
+                        currentUV.textContent = "UV Index: " + data.current.uvi + " EXTREME";
+                    };
                     
 
                     // SET ITEM TO LOCAL STORAGE                 
-                    // SEND TO LOCAL STORAGE
-                    // APPEND LOCAL STORAGE TO HTML
-                    
                     var pastCity = locData.name;
                     pastCitySearches.push(pastCity);
                     localStorage.setItem("pastCitySearches", JSON.stringify(pastCitySearches));
-
-                    var stored = JSON.parse(localStorage.getItem("pastCitySearches"));
+                    // APPEND LOCAL STORAGE TO HTML
+                       
                     
-
-                    // var result = stored;
+                    var stored = JSON.parse(localStorage.getItem("pastCitySearches"));
                     console.log("RESULT", stored);
+                    
+                    
+                    // var result = stored;
 
                     // append new value to the array
                     // pastCitySearches.push(result);
 
-                    document.getElementById("past-city").append(stored);
+                    document.getElementById("past-city").textContent = stored;
 
 
 
