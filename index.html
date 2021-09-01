@@ -19,7 +19,7 @@
     <header>
         <div>
             <h1 class="d-flex justify-content-center align-items-center p-3 mb-2 bg-primary text-white">Weather
-                Dashboard <i class="fas fa-cloud"></i></h1>
+                Dashboard<i class="fas fa-cloud ml-2"></i></h1>
         </div>
     </header>
 
@@ -34,42 +34,48 @@
                 <div class="card-body">
                     <!-- Form for search -->
                     <form id="form" class="form-group d-flex justify-content-center align-items-center">
-                        <h2>Search for a City:</h2>
                         <div class="form-group p-3">
+                            <h2>Search for a City:</h2>
                             <input type="text" class="form-control" style="width: 100%" id="search-input"
                                 placeholder="Charlotte">
                         </div>
-                        <button type="submit" id="search-btn" class="btn btn-primary p-3 mb-2"><i
+                        <button type="submit" id="search-btn" class="btn btn-primary p-2 mt-4"><i
                                 class="fas fa-search"></i> Search</button>
                     </form>
                     <hr>
-                    <ul id="past-city"></ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Row -->
-        <div class="row d-flex justify-content-around align-items-center">
-            <!-- Column -->
-            <div class="col-12 col-lg-6">
-                <div class="card ">
-                    <!-- Content -->
-                    <div id="box" class="card-body d-flex justify-content-center align-items-center">
-                        <div class="justify-content-center align-items-center">
-                            <h3 id="current-city">City Search Info</h3>
-                            <img id="weather-icon" src="" alt="Weather Icon Current" />
-                        </div>
-                        <div>
-                            <!-- Indexes -->
-                            <p id="current-temp">temp</p>
-                            <p id="current-wind">wind</p>
-                            <p id="current-humidity">humidity</p>
-                            <p id="current-uv">uv</p>
+                    <div class="row d-flex wrap">
+                        <strong>Past City Searches</strong>
+                        <ul id="past-city"></ul>
+                        <div class="col-12">
+                            <!-- Row -->
+                            <div class="row">
+                                <!-- Column -->
+                                <div class="col-12">
+                                    <div class="card">
+                                        <!-- Content -->
+                                        <div id="box" class="card-body d-flex justify-content-center align-items-center">
+                                            <div class="p-3 m-3 justify-content-center">
+                                                <h3 id="current-city">City Search Info</h3>
+                                                <img id="weather-icon" src="" alt="Weather Icon Current" />
+                                            </div>
+                                            <div>
+                                                <!-- Indexes -->
+                                                <p id="current-temp">temp</p>
+                                                <p id="current-wind">wind</p>
+                                                <p id="current-humidity">humidity</p>
+                                                <p id="current-uv">uv</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
         <!-- Row -->
         <div class="row">
             <h3 class="p-3 m-3 " id="forecast">5-Day Forecast:</h3>
