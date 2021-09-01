@@ -18,38 +18,44 @@
 <body>
     <header>
         <div>
-            <h1>Weather Dashboard <i class="fas fa-cloud"></i></h1>
+            <h1 class="d-flex justify-content-center align-items-center p-3 mb-2 bg-primary text-white">Weather
+                Dashboard <i class="fas fa-cloud"></i></h1>
         </div>
     </header>
 
     <!-- Container -->
     <div class="container-fluid">
+
         <!-- Row -->
         <div class="row">
             <!-- Column -->
             <div class="col-12">
                 <!-- Content -->
                 <div class="card-body">
-                    <h2>Search for a City:</h2>
                     <!-- Form for search -->
-                    <form id="form">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="search-input" placeholder="Charlotte">
+                    <form id="form" class="form-group d-flex justify-content-center align-items-center">
+                        <h2>Search for a City:</h2>
+                        <div class="form-group p-3">
+                            <input type="text" class="form-control" style="width: 100%" id="search-input"
+                                placeholder="Charlotte">
                         </div>
-                        <button type="submit" id="search-btn" class="btn btn-primary"><i
+                        <button type="submit" id="search-btn" class="btn btn-primary p-3 mb-2"><i
                                 class="fas fa-search"></i> Search</button>
                     </form>
+                    <hr>
+                    <ul id="past-city"></ul>
                 </div>
             </div>
         </div>
+
         <!-- Row -->
-        <div class="row">
+        <div class="row d-flex justify-content-around align-items-center">
             <!-- Column -->
-            <div class="col-12">
-                <div class="card">
+            <div class="col-12 col-lg-6">
+                <div class="card ">
                     <!-- Content -->
-                    <div class="card-body">
-                        <div>
+                    <div id="box" class="card-body d-flex justify-content-center align-items-center">
+                        <div class="justify-content-center align-items-center">
                             <h3 id="current-city">City Search Info</h3>
                             <img id="weather-icon" src="" alt="Weather Icon Current" />
                         </div>
@@ -66,11 +72,11 @@
         </div>
         <!-- Row -->
         <div class="row">
+            <h3 class="p-3 m-3 " id="forecast">5-Day Forecast:</h3>
             <!-- Column -->
-            <div id="weather-forecast" class="col-12">
-                <h3 id="forecast">5-Day Forecast:</h3>
+            <div id="weather-forecast" class="col-12 d-flex justify-content-around align-items-center">
                 <!-- forecast 1 -->
-                <div class="card col-sm-4">
+                <div class="card col-lg-2 bg-dark text-white">
                     <div class="card-body">
                         <!-- Cards -->
                         <p id="week-date0">Date</p>
@@ -82,7 +88,7 @@
                     </div>
                 </div>
                 <!-- forecast 2 -->
-                <div class="card col-sm-4">
+                <div class="card col-lg-2 bg-dark text-white">
                     <div class="card-body">
                         <!-- Cards -->
                         <p id="week-date1">Date</p>
@@ -94,7 +100,7 @@
                     </div>
                 </div>
                 <!-- forecast 3 -->
-                <div class="card col-sm-4">
+                <div class="card col-lg-2 bg-dark text-white">
                     <div class="card-body">
                         <!-- Cards -->
                         <p id="week-date2">Date</p>
@@ -106,7 +112,7 @@
                     </div>
                 </div>
                 <!-- forecast 4 -->
-                <div class="card col-sm-4">
+                <div class="card col-lg-2 bg-dark text-white">
                     <div class="card-body">
                         <!-- Cards -->
                         <p id="week-date3">Date</p>
@@ -118,7 +124,7 @@
                     </div>
                 </div>
                 <!-- forecast 5 -->
-                <div class="card col-sm-4">
+                <div class="card col-lg-2 bg-dark text-white">
                     <div class="card-body">
                         <!-- Cards -->
                         <p id="week-date4">Date</p>
@@ -132,6 +138,7 @@
 
             </div>
         </div>
+
     </div>
     <!-- LINK TO jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

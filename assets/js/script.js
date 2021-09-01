@@ -16,15 +16,7 @@ var weekDate = document.getElementById('week-date');
 var weekTempMin = document.getElementById('week-tempMin');
 var weekHumidity = document.getElementById('week-humidity');
 var weekWind = document.getElementById('week-wind');
-
-// var resultCard = document.createElement('div');
-// resultCard.classList.add('card');
-
-// var resultBody = document.createElement('div');
-// resultBody.classList.add('card-body');
-
-
-//     var queryString = document.location.search;
+var pastCitySearches = [];
 
 
 // FUNCTIONS
@@ -55,34 +47,60 @@ function getSearch(event) {
                     // CURRENT WEATHER ICON
                     var iconWeather = locData.weather[0].icon;
                     var iURL = "http://openweathermap.org/img/w/" + iconWeather + ".png";
-                                            
+
                     $('#weather-icon').attr('src', iURL);
 
                     // DISPLAY CONTENT TO HTML
                     currentCity.textContent = locData.name + " (" + currentDate + ")";
-                    currentTemp.textContent = "Temp: " + (((parseInt(locData.main.temp)-273.15) * 1.80) + 32).toFixed(2) + " °F";
+                    currentTemp.textContent = "Temp: " + (((parseInt(locData.main.temp) - 273.15) * 1.80) + 32).toFixed(2) + " °F";
                     currentWind.textContent = "Wind: " + data.current.wind_speed + " MPH";
                     currentHumidity.textContent = "Humidity: " + data.current.humidity + " %";
                     currentUV.textContent = "UV Index: " + data.current.uvi;
+                    currentUV.style.cssText = 'color:white;background-color:green';
                     
+
+                    // SET ITEM TO LOCAL STORAGE                 
+                    // SEND TO LOCAL STORAGE
+                    // APPEND LOCAL STORAGE TO HTML
+                    
+                    var pastCity = locData.name;
+                    pastCitySearches.push(pastCity);
+                    localStorage.setItem("pastCitySearches", JSON.stringify(pastCitySearches));
+
+                    var stored = JSON.parse(localStorage.getItem("pastCitySearches"));
+                    
+
+                    // var result = stored;
+                    console.log("RESULT", stored);
+
+                    // append new value to the array
+                    // pastCitySearches.push(result);
+
+                    document.getElementById("past-city").append(stored);
+
+
+
+                    // FOR LOOP TO GET DATA FOR 5-DAY FORECAST
                     for (var i = 0; i < 5; i++) {
                         var minTemp = data.daily[i].temp.min;
                         var maxTemp = data.daily[i].temp.max;
                         var dayHumidity = data.daily[i].humidity;
                         var dayWind = data.daily[i].wind_speed;
-                        var dayDate = moment().format("M/D/YYYY");
+                        // USE MOMENT AND ADD 1 DAY THEN FORMAT DATE
+                        var dayDate = moment().add(i + 1, "days").format("M/D/YYYY");
                         // WEATHER ICONS
                         var iconCode = data.daily[i].weather[0].icon;
                         var iconURL = "http://openweathermap.org/img/w/" + iconCode + ".png";
-                        
-                        $('#img'+i).attr('src', iconURL);
-                        
+                        // IMAGE
+                        $('#img' + i).attr('src', iconURL);
+
+                        // DISPLAY CONTENT ON HTML
                         console.log("DATE", dayDate);
-                        document.getElementById('week-date'+i).textContent = dayDate;
-                        document.getElementById('week-tempMax'+i).textContent = "Max Temp: " + (((parseInt(maxTemp)-273.15) * 1.80) + 32).toFixed(2) + " °F";
-                        document.getElementById('week-tempMin'+i).textContent = "Min Temp: " + (((parseInt(minTemp)-273.15) * 1.80) + 32).toFixed(2) + " °F";
-                        document.getElementById('week-wind'+i).textContent = "Wind: " + dayWind + " MPH";
-                        document.getElementById('week-humidity'+i).textContent = "Humidity: " + dayHumidity + " %";
+                        document.getElementById('week-date' + i).textContent = dayDate;
+                        document.getElementById('week-tempMax' + i).textContent = "Max Temp: " + (((parseInt(maxTemp) - 273.15) * 1.80) + 32).toFixed(2) + " °F";
+                        document.getElementById('week-tempMin' + i).textContent = "Min Temp: " + (((parseInt(minTemp) - 273.15) * 1.80) + 32).toFixed(2) + " °F";
+                        document.getElementById('week-wind' + i).textContent = "Wind: " + dayWind + " MPH";
+                        document.getElementById('week-humidity' + i).textContent = "Humidity: " + dayHumidity + " %";
                     }
                 });
 
@@ -91,8 +109,6 @@ function getSearch(event) {
 
 
 
-
 // EVENT LISTENERS
-formEl.addEventListener('submit', getSearch);
-
+$("#search-btn").on("click", getSearch);
 
