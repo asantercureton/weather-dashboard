@@ -25,6 +25,8 @@ var weekWind = document.getElementById('week-wind');
 
 
 //     var queryString = document.location.search;
+
+
 // FUNCTIONS
 // Get search info of city for current weather info
 function getSearch(event) {
@@ -50,11 +52,16 @@ function getSearch(event) {
                 })
                 .then(function (data) {
                     console.log(data);
+                    var iconWeather = locData.weather[0].icon;
+                    var iURL = "http://openweathermap.org/img/w/" + iconWeather + ".png";
+                    console.log("IMG", iconWeather);
+                        
+                    $('#weather-icon').attr('src', iURL);
                     currentCity.textContent = locData.name + " (" + currentDate + ")";
-                    currentTemp.textContent = locData.main.temp;
-                    currentWind.textContent = data.current.wind_speed;
-                    currentHumidity.textContent = data.current.humidity;
-                    currentUV.textContent = data.current.uvi;
+                    currentTemp.textContent = "Temp: " + (((parseInt(locData.main.temp, 3)-273.15) * 1.80) + 32) + " °F";
+                    currentWind.textContent = "Wind: " + data.current.wind_speed + " MPH";
+                    currentHumidity.textContent = "Humidity: " + data.current.humidity + " %";
+                    currentUV.textContent = "UV Index: " + data.current.uvi;
                     
                     for (var i = 0; i < 5; i++) {
                         var minTemp = data.daily[i].temp.min;
@@ -70,11 +77,11 @@ function getSearch(event) {
                         
                         document.getElementById('img'+i).innerHTML = iconCode;
                         document.getElementById('week-date'+i).textContent = dayDate;
-                        document.getElementById('week-tempMin'+i).textContent = minTemp;
-                        document.getElementById('week-tempMax'+i).textContent = maxTemp;
-                        document.getElementById('week-wind'+i).textContent = dayWind;
-                        document.getElementById('week-humidity'+i).textContent = dayHumidity;
-                        document.getElementById('week-humidity'+i).textContent = dayHumidity;
+                        document.getElementById('week-tempMax'+i).textContent = "Max Temp: " + (((parseInt(maxTemp)-273.15) * 1.80) + 32) + " °F";
+                        document.getElementById('week-tempMin'+i).textContent = "Min Temp: " + (((parseInt(minTemp)-273.15) * 1.80) + 32) + " °F";
+                        document.getElementById('week-wind'+i).textContent = "Wind: " + dayWind + " MPH";
+                        document.getElementById('week-humidity'+i).textContent = "Humidity: " + dayHumidity + " %";
+                        
                         // weekDate.textContent = dayDate;
                         // weekTemp.textContent = maxTemp;
                         // weekWind.textContent = data.daily.wind_speed;
