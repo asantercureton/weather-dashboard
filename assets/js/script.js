@@ -61,10 +61,14 @@ function getSearch(event) {
                         var maxTemp = data.daily[i].temp.max;
                         var dayHumidity = data.daily[i].humidity;
                         var dayWind = data.daily[i].wind_speed;
-                        var dayDate = moment().format("MMMM DDDD Do");
-                        `"http://openweathermap.org/img/wn/"+response2." + daily[i].weather[0].icon+"@2x.png`;
-                        var iconWeather = `"http://openweathermap.org/img/wn/"+response2." + daily[i].weather[0].icon+"@2x.png`;
+                        var dayDate = moment().format("M/D/YYYY");
+                        // WEATHER ICONS
+                        var iconCode = data.daily[i].weather[0].icon;
+                        var iconURL = "http://openweathermap.org/img/w/" + iconCode + ".png";
                         
+                        $('#img'+i).attr('src', iconURL);
+                        
+                        document.getElementById('img'+i).innerHTML = iconCode;
                         document.getElementById('week-date'+i).textContent = dayDate;
                         document.getElementById('week-tempMin'+i).textContent = minTemp;
                         document.getElementById('week-tempMax'+i).textContent = maxTemp;
