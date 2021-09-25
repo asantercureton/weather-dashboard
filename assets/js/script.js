@@ -56,7 +56,7 @@ function getSearch(event) {
                     currentTemp.textContent = "Temp: " + (((parseInt(locData.main.temp) - 273.15) * 1.80) + 32).toFixed(2) + " °F";
                     currentWind.textContent = "Wind: " + data.current.wind_speed + " MPH";
                     currentHumidity.textContent = "Humidity: " + data.current.humidity + " %";
-                    
+
 
                     // CHANGE STATE OF UV INDEX COLOR
                     if (data.current.uvi <= 2) {
@@ -75,27 +75,22 @@ function getSearch(event) {
                         currentUV.style.cssText = 'color:yellow;background-color:purple';
                         currentUV.textContent = "UV Index: " + data.current.uvi + " EXTREME";
                     };
-                    
+
 
                     // SET ITEM TO LOCAL STORAGE                 
                     var pastCity = locData.name;
                     pastCitySearches.push(pastCity);
                     localStorage.setItem("pastCitySearches", JSON.stringify(pastCitySearches));
-                    // APPEND LOCAL STORAGE TO HTML
-                       
                     
-                    var stored = JSON.parse(localStorage.getItem("pastCitySearches"));
-                    console.log("RESULT", stored);
-                    
-                    
-                    // var result = stored;
 
-                    // append new value to the array
-                    // pastCitySearches.push(result);
-
+                    // RETRIEVE PAST CITY FROM LOCAL STORAGE
+                    // var stored = localStorage.getItem("pastCitySearches");
+                    // console.log("PAST", stored);
                     document.getElementById("past-city").textContent = stored;
-
-
+                   
+                        // var getPast = stored[i];
+                    //     console.log("RESULT", stored);
+                    
 
                     // FOR LOOP TO GET DATA FOR 5-DAY FORECAST
                     for (var i = 0; i < 5; i++) {
@@ -112,7 +107,7 @@ function getSearch(event) {
                         $('#img' + i).attr('src', iconURL);
 
                         // DISPLAY CONTENT ON HTML
-                        console.log("DATE", dayDate);
+                        // console.log("DATE", dayDate);
                         document.getElementById('week-date' + i).textContent = dayDate;
                         document.getElementById('week-tempMax' + i).textContent = "Max Temp: " + (((parseInt(maxTemp) - 273.15) * 1.80) + 32).toFixed(2) + " °F";
                         document.getElementById('week-tempMin' + i).textContent = "Min Temp: " + (((parseInt(minTemp) - 273.15) * 1.80) + 32).toFixed(2) + " °F";
