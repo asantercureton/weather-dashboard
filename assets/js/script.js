@@ -16,14 +16,19 @@ var weekDate = document.getElementById('week-date');
 var weekTempMin = document.getElementById('week-tempMin');
 var weekHumidity = document.getElementById('week-humidity');
 var weekWind = document.getElementById('week-wind');
-var pastCitySearches = [];
 var stored = [];
+
+if (localStorage.getItem('pastCitySearches')) {
+    var pastCitySearches = JSON.parse(localStorage.getItem('pastCitySearches'));
+} else {
+    var pastCitySearches = [];
+}
 
 
 // FUNCTIONS
 // Get search info of city for current weather info
 function getSearch(event) {
-    event.preventDefault();
+    // event.preventDefault();
     // Display the current date
     var currentDate = moment().format("M/D/YYYY");
     //Instructor provided sample
@@ -81,16 +86,9 @@ function getSearch(event) {
                     var pastCity = locData.name;
                     pastCitySearches.push(pastCity);
                     localStorage.setItem("pastCitySearches", JSON.stringify(pastCitySearches));
+
                     
 
-                    // RETRIEVE PAST CITY FROM LOCAL STORAGE
-                    // var stored = localStorage.getItem("pastCitySearches");
-                    // console.log("PAST", stored);
-                    document.getElementById("past-city").textContent = stored;
-                   
-                        // var getPast = stored[i];
-                    //     console.log("RESULT", stored);
-                    
 
                     // FOR LOOP TO GET DATA FOR 5-DAY FORECAST
                     for (var i = 0; i < 5; i++) {
@@ -117,9 +115,33 @@ function getSearch(event) {
                 });
 
         })
+
+
+    // renderPastSearch();
 };
 
+// RETRIEVE PAST CITY FROM LOCAL STORAGE
+function renderPastSearch() {
+    var stored = JSON.parse(localStorage.getItem("pastCitySearches"));
+    console.log("PAST", stored);
+    document.getElementById("past-city").innerHTML = '';
+    for (var i = 0; i < stored.length; i++) {
+        var pastSearchEl = document.createElement('input');
+        pastSearchEl.setAttribute('type', 'text');
+        pastSearchEl.setAttribute('readonly', true);
+        pastSearchEl.setAttribute('class', 'form-control d-block bg-dark');
+        pastSearchEl.setAttribute('value', stored[i]);
+        pastSearchEl.addEventListener('click', function () {
+            getSearch(pastCitySearches.value);
+        });
+        document.getElementById("past-city").append(pastSearchEl);
+    };
+}
 
+// renderPastSearch();
+// if (stored.length > 0) {
+//     getSearch(stored[stored.length - 1]);
+// }
 
 // EVENT LISTENERS
 $("#search-btn").on("click", getSearch);
